@@ -7,18 +7,6 @@
 },
 {
   "directory": "/Users/emanuelrs101/desktop/Neptune/cmake-build-debug",
-  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -I/Users/emanuelrs101/desktop/Neptune/cmake-build-debug/_deps/raylib-src/src -I/Users/emanuelrs101/desktop/Neptune/cmake-build-debug/_deps/raylib-src/src/external/glfw/include -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics -o CMakeFiles/example.dir/Food.cpp.o -c /Users/emanuelrs101/desktop/Neptune/Food.cpp",
-  "file": "/Users/emanuelrs101/desktop/Neptune/Food.cpp",
-  "output": "CMakeFiles/example.dir/Food.cpp.o"
-},
-{
-  "directory": "/Users/emanuelrs101/desktop/Neptune/cmake-build-debug",
-  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -I/Users/emanuelrs101/desktop/Neptune/cmake-build-debug/_deps/raylib-src/src -I/Users/emanuelrs101/desktop/Neptune/cmake-build-debug/_deps/raylib-src/src/external/glfw/include -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics -o CMakeFiles/example.dir/Snake.cpp.o -c /Users/emanuelrs101/desktop/Neptune/Snake.cpp",
-  "file": "/Users/emanuelrs101/desktop/Neptune/Snake.cpp",
-  "output": "CMakeFiles/example.dir/Snake.cpp.o"
-},
-{
-  "directory": "/Users/emanuelrs101/desktop/Neptune/cmake-build-debug",
   "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -I/Users/emanuelrs101/desktop/Neptune/cmake-build-debug/_deps/raylib-src/src -I/Users/emanuelrs101/desktop/Neptune/cmake-build-debug/_deps/raylib-src/src/external/glfw/include -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics -o CMakeFiles/example.dir/linearAlgebra/Vector2D.cpp.o -c /Users/emanuelrs101/desktop/Neptune/linearAlgebra/Vector2D.cpp",
   "file": "/Users/emanuelrs101/desktop/Neptune/linearAlgebra/Vector2D.cpp",
   "output": "CMakeFiles/example.dir/linearAlgebra/Vector2D.cpp.o"

@@ -29,10 +29,6 @@ endif()
 # Our Project
 
 add_executable(${PROJECT_NAME} main.cpp
-        Food.cpp
-        Food.h
-        Snake.cpp
-        Snake.h
         linearAlgebra/Vector2D.hpp
         linearAlgebra/Vector2D.cpp
         simulator/SystemState.hpp

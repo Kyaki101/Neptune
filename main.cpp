@@ -2,8 +2,6 @@
 
 #include "rlgl.h"
 #include "raymath.h"
-#include "Food.h"
-#include "Snake.h"
 #include "geometry/Shapes.h"
 #include "GLFW/glfw3.h"
 #include "linearAlgebra/Vector2D.hpp"
@@ -43,10 +41,6 @@ int main ()
     sim::SystemState SS = sim::SystemState(0.016);
 
     SS.addObject(std::move(rect));
-
-    Food food = Food(darkGreen);
-
-    Snake snake = Snake(darkGreen);
 
     while (!WindowShouldClose()) {
 
