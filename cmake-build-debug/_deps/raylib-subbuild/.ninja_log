@@ -1,0 +1,21 @@
+# ninja log v6
+19	3827	1738659335242086509	/Users/emanuelrs101/Desktop/Neptune/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-download	8d00882ca7e8b515
+3884	3896	1738659335311993551	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-test	b3d8b3b10c624721
+3839	3850	1738659335266019866	/Users/emanuelrs101/Desktop/Neptune/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-patch	ac51a0c169c6428a
+1	19	1738659331433524205	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-mkdir	1865cc72d1194da0
+3827	3839	1738659335254465830	/Users/emanuelrs101/Desktop/Neptune/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-update	35d770333b87ff4e
+1	19	1738659331433524205	/Users/emanuelrs101/Desktop/Neptune/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-mkdir	1865cc72d1194da0
+3850	3861	1738659335276915656	/Users/emanuelrs101/Desktop/Neptune/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-configure	85b0b998f4af1ea
+19	3827	1738659335242086509	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-download	8d00882ca7e8b515
+3827	3839	1738659335254465830	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-update	35d770333b87ff4e
+3839	3850	1738659335266019866	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-patch	ac51a0c169c6428a
+3861	3873	1738659335288582982	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-build	13448431ddb6f0df
+3850	3861	1738659335276915656	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-configure	85b0b998f4af1ea
+3861	3873	1738659335288582982	/Users/emanuelrs101/Desktop/Neptune/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-build	13448431ddb6f0df
+3897	3912	1738659335327144767	/Users/emanuelrs101/Desktop/Neptune/cmake-build-debug/_deps/raylib-subbuild/CMakeFiles/raylib-populate-complete	d7d62a6a5f659152
+3873	3884	1738659335299790937	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-install	28890c792046d163
+3873	3884	1738659335299790937	/Users/emanuelrs101/Desktop/Neptune/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-install	28890c792046d163
+3884	3896	1738659335311993551	/Users/emanuelrs101/Desktop/Neptune/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-test	b3d8b3b10c624721
+3897	3912	1738659335327144767	CMakeFiles/raylib-populate-complete	d7d62a6a5f659152
+3897	3912	1738659335327144767	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-done	d7d62a6a5f659152
+3897	3912	1738659335327144767	/Users/emanuelrs101/Desktop/Neptune/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-done	d7d62a6a5f659152
