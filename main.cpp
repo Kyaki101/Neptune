@@ -40,7 +40,7 @@ int main ()
 
     std::unique_ptr<Geometry::Shape> rect = std::make_unique<Geometry::Rectangle>(50, 50, 50, 50, darkGreen);
 
-    sim::SystemState SS = sim::SystemState();
+    sim::SystemState SS = sim::SystemState(0.016);
 
     SS.addObject(std::move(rect));
 

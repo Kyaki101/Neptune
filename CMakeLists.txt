@@ -38,7 +38,9 @@ add_executable(${PROJECT_NAME} main.cpp
         simulator/SystemState.hpp
         geometry/Shapes.h
         geometry/Rectangle.cpp
-        simulator/SystemState.cpp)
+        simulator/SystemState.cpp
+        OdeSolver/RK4OdeSolver.h
+        OdeSolver/RK4OdeSolver.cpp)
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
 

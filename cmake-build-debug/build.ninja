@@ -97,6 +97,14 @@ build CMakeFiles/example.dir/simulator/SystemState.cpp.o: CXX_COMPILER__example_
   OBJECT_DIR = CMakeFiles/example.dir
   OBJECT_FILE_DIR = CMakeFiles/example.dir/simulator
 
+build CMakeFiles/example.dir/OdeSolver/RK4OdeSolver.cpp.o: CXX_COMPILER__example_unscanned_Debug /Users/emanuelrs101/desktop/Neptune/OdeSolver/RK4OdeSolver.cpp || cmake_object_order_depends_target_example
+  DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
+  DEP_FILE = CMakeFiles/example.dir/OdeSolver/RK4OdeSolver.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/emanuelrs101/desktop/Neptune/cmake-build-debug/_deps/raylib-src/src -I/Users/emanuelrs101/desktop/Neptune/cmake-build-debug/_deps/raylib-src/src/external/glfw/include
+  OBJECT_DIR = CMakeFiles/example.dir
+  OBJECT_FILE_DIR = CMakeFiles/example.dir/OdeSolver
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target example
@@ -105,7 +113,7 @@ build CMakeFiles/example.dir/simulator/SystemState.cpp.o: CXX_COMPILER__example_
 #############################################
 # Link the executable example
 
-build example: CXX_EXECUTABLE_LINKER__example_Debug CMakeFiles/example.dir/main.cpp.o CMakeFiles/example.dir/Food.cpp.o CMakeFiles/example.dir/Snake.cpp.o CMakeFiles/example.dir/linearAlgebra/Vector2D.cpp.o CMakeFiles/example.dir/geometry/Rectangle.cpp.o CMakeFiles/example.dir/simulator/SystemState.cpp.o | _deps/raylib-build/raylib/libraylib.a || _deps/raylib-build/raylib/external/glfw/src/glfw _deps/raylib-build/raylib/libraylib.a
+build example: CXX_EXECUTABLE_LINKER__example_Debug CMakeFiles/example.dir/main.cpp.o CMakeFiles/example.dir/Food.cpp.o CMakeFiles/example.dir/Snake.cpp.o CMakeFiles/example.dir/linearAlgebra/Vector2D.cpp.o CMakeFiles/example.dir/geometry/Rectangle.cpp.o CMakeFiles/example.dir/simulator/SystemState.cpp.o CMakeFiles/example.dir/OdeSolver/RK4OdeSolver.cpp.o | _deps/raylib-build/raylib/libraylib.a || _deps/raylib-build/raylib/external/glfw/src/glfw _deps/raylib-build/raylib/libraylib.a
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
   LINK_LIBRARIES = _deps/raylib-build/raylib/libraylib.a  -framework IOKit  -framework Cocoa  -framework OpenGL  -framework OpenGL  -framework IOKit  -framework Cocoa  -framework CoreFoundation
   OBJECT_DIR = CMakeFiles/example.dir
