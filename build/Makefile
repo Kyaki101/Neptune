@@ -180,6 +180,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named neptune
+
+# Build rule for target.
+neptune: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 neptune
+.PHONY : neptune
+
+# fast build rule for target.
+neptune/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/neptune.dir/build.make CMakeFiles/neptune.dir/build
+.PHONY : neptune/fast
+
+#=============================================================================
 # Target rules for targets named sfml_app
 
 # Build rule for target.
@@ -193,17 +206,17 @@ sfml_app/fast:
 .PHONY : sfml_app/fast
 
 #=============================================================================
-# Target rules for targets named check
+# Target rules for targets named linear_algebra_tests
 
 # Build rule for target.
-check: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 check
-.PHONY : check
+linear_algebra_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 linear_algebra_tests
+.PHONY : linear_algebra_tests
 
 # fast build rule for target.
-check/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/build
-.PHONY : check/fast
+linear_algebra_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/linear_algebra_tests.dir/build.make CMakeFiles/linear_algebra_tests.dir/build
+.PHONY : linear_algebra_tests/fast
 
 #=============================================================================
 # Target rules for targets named sfml-system
@@ -327,7 +340,7 @@ src/linear_algebra/vector2d.o: src/linear_algebra/vector2d.cpp.o
 
 # target to build an object file
 src/linear_algebra/vector2d.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sfml_app.dir/build.make CMakeFiles/sfml_app.dir/src/linear_algebra/vector2d.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/neptune.dir/build.make CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o
 .PHONY : src/linear_algebra/vector2d.cpp.o
 
 src/linear_algebra/vector2d.i: src/linear_algebra/vector2d.cpp.i
@@ -335,7 +348,7 @@ src/linear_algebra/vector2d.i: src/linear_algebra/vector2d.cpp.i
 
 # target to preprocess a source file
 src/linear_algebra/vector2d.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sfml_app.dir/build.make CMakeFiles/sfml_app.dir/src/linear_algebra/vector2d.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/neptune.dir/build.make CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.i
 .PHONY : src/linear_algebra/vector2d.cpp.i
 
 src/linear_algebra/vector2d.s: src/linear_algebra/vector2d.cpp.s
@@ -343,7 +356,7 @@ src/linear_algebra/vector2d.s: src/linear_algebra/vector2d.cpp.s
 
 # target to generate assembly for a file
 src/linear_algebra/vector2d.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sfml_app.dir/build.make CMakeFiles/sfml_app.dir/src/linear_algebra/vector2d.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/neptune.dir/build.make CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.s
 .PHONY : src/linear_algebra/vector2d.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -370,29 +383,29 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sfml_app.dir/build.make CMakeFiles/sfml_app.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-tests/check.o: tests/check.cpp.o
-.PHONY : tests/check.o
+tests/linear_algebra_tests.o: tests/linear_algebra_tests.cpp.o
+.PHONY : tests/linear_algebra_tests.o
 
 # target to build an object file
-tests/check.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/tests/check.cpp.o
-.PHONY : tests/check.cpp.o
+tests/linear_algebra_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/linear_algebra_tests.dir/build.make CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o
+.PHONY : tests/linear_algebra_tests.cpp.o
 
-tests/check.i: tests/check.cpp.i
-.PHONY : tests/check.i
+tests/linear_algebra_tests.i: tests/linear_algebra_tests.cpp.i
+.PHONY : tests/linear_algebra_tests.i
 
 # target to preprocess a source file
-tests/check.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/tests/check.cpp.i
-.PHONY : tests/check.cpp.i
+tests/linear_algebra_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/linear_algebra_tests.dir/build.make CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.i
+.PHONY : tests/linear_algebra_tests.cpp.i
 
-tests/check.s: tests/check.cpp.s
-.PHONY : tests/check.s
+tests/linear_algebra_tests.s: tests/linear_algebra_tests.cpp.s
+.PHONY : tests/linear_algebra_tests.s
 
 # target to generate assembly for a file
-tests/check.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/tests/check.cpp.s
-.PHONY : tests/check.cpp.s
+tests/linear_algebra_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/linear_algebra_tests.dir/build.make CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.s
+.PHONY : tests/linear_algebra_tests.cpp.s
 
 # Help Target
 help:
@@ -408,11 +421,12 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... check"
 	@echo "... gmock"
 	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... linear_algebra_tests"
+	@echo "... neptune"
 	@echo "... sfml-audio"
 	@echo "... sfml-graphics"
 	@echo "... sfml-network"
@@ -425,9 +439,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... tests/check.o"
-	@echo "... tests/check.i"
-	@echo "... tests/check.s"
+	@echo "... tests/linear_algebra_tests.o"
+	@echo "... tests/linear_algebra_tests.i"
+	@echo "... tests/linear_algebra_tests.s"
 .PHONY : help
 
 

@@ -2,8 +2,8 @@ sfml_app: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/../../../../lib/Scrt1.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/crtbeginS.o \
-  CMakeFiles/sfml_app.dir/src/linear_algebra/vector2d.cpp.o \
   CMakeFiles/sfml_app.dir/src/main.cpp.o \
+  libneptune.a \
   _deps/sfml-build/lib/libsfml-graphics.a \
   _deps/sfml-build/lib/libsfml-window.a \
   _deps/sfml-build/lib/libsfml-system.a \
@@ -68,9 +68,9 @@ sfml_app: \
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/crtbeginS.o:
 
-CMakeFiles/sfml_app.dir/src/linear_algebra/vector2d.cpp.o:
-
 CMakeFiles/sfml_app.dir/src/main.cpp.o:
+
+libneptune.a:
 
 _deps/sfml-build/lib/libsfml-graphics.a:
 

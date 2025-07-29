@@ -1,0 +1,5 @@
+if(EXISTS "/home/emmanuel/Neptune/build/linear_algebra_tests[1]_tests.cmake")
+  include("/home/emmanuel/Neptune/build/linear_algebra_tests[1]_tests.cmake")
+else()
+  add_test(linear_algebra_tests_NOT_BUILT linear_algebra_tests_NOT_BUILT)
+endif()

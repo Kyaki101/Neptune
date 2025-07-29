@@ -1,0 +1,2 @@
+/usr/bin/ar qc libneptune.a CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o
+/usr/bin/ranlib libneptune.a

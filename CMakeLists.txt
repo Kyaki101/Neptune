@@ -19,36 +19,40 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(sfml googletest)
 
 # Gather all source files under src/
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
+file(GLOB_RECURSE ALL_SRC CONFIGURE_DEPENDS src/*.cpp)
 
-# === Main Application ===
-add_executable(sfml_app ${SOURCES})
-target_link_libraries(sfml_app PRIVATE sfml-graphics sfml-window sfml-system)
-target_include_directories(sfml_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+# Exclude main.cpp from the sources for the library
+list(FILTER ALL_SRC EXCLUDE REGEX ".*/main\\.cpp$")
 
-# === Unit Tests ===
-# Enable tests
+# Create static library from all sources except main.cpp
+add_library(neptune STATIC ${ALL_SRC})
+target_include_directories(neptune PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+# Main application executable
+add_executable(sfml_app src/main.cpp)
+target_link_libraries(sfml_app PRIVATE neptune sfml-graphics sfml-window sfml-system)
+
+# Enable testing and include GoogleTest
 enable_testing()
 include(GoogleTest)
 
-# List of component test files
+# List of your test executables (one per component)
 set(TEST_COMPONENTS
-    check
-    #    linear_algebra_test
-    #    geometry_test
-    #    simulation_test
-    #    ode_test
+    linear_algebra_tests
+    # geometry_tests
+    # simulation_tests
+    # ode_tests
 )
 
-# Loop through and create one test target per component
+# Loop through test components and create executables
 foreach(test_name IN LISTS TEST_COMPONENTS)
     add_executable(${test_name} tests/${test_name}.cpp)
-    
+
     target_link_libraries(${test_name}
+        neptune
         GTest::gtest_main
     )
-    
-    # Include src/ so tests can use your actual code
+
     target_include_directories(${test_name} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
     gtest_discover_tests(${test_name})

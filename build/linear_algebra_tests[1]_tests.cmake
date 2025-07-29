@@ -1,0 +1,5 @@
+add_test([=[LinearAlgebra.Basic]=]  /home/emmanuel/Neptune/build/linear_algebra_tests [==[--gtest_filter=LinearAlgebra.Basic]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[LinearAlgebra.Basic]=]  PROPERTIES WORKING_DIRECTORY /home/emmanuel/Neptune/build SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+add_test([=[LinearAlgebra.DotProdTest]=]  /home/emmanuel/Neptune/build/linear_algebra_tests [==[--gtest_filter=LinearAlgebra.DotProdTest]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[LinearAlgebra.DotProdTest]=]  PROPERTIES WORKING_DIRECTORY /home/emmanuel/Neptune/build SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+set(  linear_algebra_tests_TESTS LinearAlgebra.Basic LinearAlgebra.DotProdTest)

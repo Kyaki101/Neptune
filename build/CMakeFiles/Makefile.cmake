@@ -170,8 +170,9 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/neptune.dir/DependInfo.cmake"
   "CMakeFiles/sfml_app.dir/DependInfo.cmake"
-  "CMakeFiles/check.dir/DependInfo.cmake"
+  "CMakeFiles/linear_algebra_tests.dir/DependInfo.cmake"
   "_deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/DependInfo.cmake"
   "_deps/sfml-build/src/SFML/Window/CMakeFiles/sfml-window.dir/DependInfo.cmake"
   "_deps/sfml-build/src/SFML/Network/CMakeFiles/sfml-network.dir/DependInfo.cmake"
