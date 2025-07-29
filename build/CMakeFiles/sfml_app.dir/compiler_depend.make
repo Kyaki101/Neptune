@@ -382,6 +382,7 @@ CMakeFiles/sfml_app.dir/src/main.cpp.o: /home/emmanuel/Neptune/src/main.cpp \
   /usr/include/c++/15.1.1/iomanip \
   /usr/include/c++/15.1.1/ios \
   /usr/include/c++/15.1.1/iosfwd \
+  /usr/include/c++/15.1.1/iostream \
   /usr/include/c++/15.1.1/istream \
   /usr/include/c++/15.1.1/iterator \
   /usr/include/c++/15.1.1/limits \
@@ -1080,6 +1081,8 @@ _deps/sfml-src/include/SFML/Graphics/StencilMode.hpp:
 /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/c++config.h:
 
 /usr/include/c++/15.1.1/pstl/glue_memory_defs.h:
+
+/usr/include/c++/15.1.1/iostream:
 
 /usr/include/c++/15.1.1/bits/predefined_ops.h:
 
