@@ -1,6 +1,7 @@
 #include "./../../include/linear_algebra/vector2d.h"
 
 #include <cmath>
+#include <stdexcept>
 
 namespace linear_algebra {
 
@@ -21,6 +22,10 @@ Vector2D Vector2D::operator-(const Vector2D &other) const {
     return { this->x - other.getX(), this->y - other.getY() };
 }
 
+bool Vector2D::operator==(const Vector2D &other) const {
+    return this->x == other.getX() && this->y == other.getY();
+}
+
 double Vector2D::getX() const {
     return this->x;
 }
@@ -38,6 +43,9 @@ double Vector2D::magnitude() {
 }
 
 Vector2D Vector2D::projection(const Vector2D &other) const {
+    if(other == linear_algebra::Vector2D(0, 0)) {
+        throw std::invalid_argument("Cannot make projection to null vector");
+    }
     double scalar = dotProduct(other) / other.dotProduct(other);
     return other * scalar;
 

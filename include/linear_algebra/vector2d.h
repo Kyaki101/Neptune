@@ -14,6 +14,7 @@ public:
     Vector2D operator*(const double) const;
     Vector2D operator+(const Vector2D &other) const;
     Vector2D operator-(const Vector2D &other) const;
+    bool operator==(const Vector2D &other) const;
     double dotProduct(const Vector2D &other) const;
     double magnitude();
     Vector2D projection(const Vector2D &other) const;
