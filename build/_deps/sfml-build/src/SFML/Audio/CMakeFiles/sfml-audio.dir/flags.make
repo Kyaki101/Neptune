@@ -4,7 +4,9 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DFLAC__NO_DLL -DMA_NO_ENCODING -DMA_NO_FLAC -DMA_NO_GENERATION -DMA_NO_MP3 -DMA_NO_RESOURCE_MANAGER -DMA_USE_STDINT -DOV_EXCLUDE_STATIC_CALLBACKS -DSFML_IS_BIG_ENDIAN=0 -DSFML_STATIC
 
-CXX_INCLUDES = -I/home/emmanuel/Neptune/build/_deps/sfml-src/include -I/home/emmanuel/Neptune/build/_deps/sfml-src/src -isystem /home/emmanuel/Neptune/build/_deps/sfml-src/extlibs/headers/miniaudio -isystem /home/emmanuel/Neptune/build/_deps/sfml-src/extlibs/headers/minimp3
+CXX_INCLUDES = -I/Users/emanuelrojas/Neptune/build/_deps/sfml-src/include -I/Users/emanuelrojas/Neptune/build/_deps/sfml-src/src -I/Users/emanuelrojas/Neptune/build/_deps/vorbis-src/include -I/Users/emanuelrojas/Neptune/build/_deps/ogg-src/include -I/Users/emanuelrojas/Neptune/build/_deps/ogg-build/include -I/Users/emanuelrojas/Neptune/build/_deps/flac-src/include -isystem /Users/emanuelrojas/Neptune/build/_deps/sfml-src/extlibs/headers/miniaudio -isystem /Users/emanuelrojas/Neptune/build/_deps/sfml-src/extlibs/headers/minimp3
 
-CXX_FLAGS = -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wmisleading-indentation -Wduplicated-cond -Wlogical-op -Wduplicated-branches
+CXX_FLAGSarm64 = -std=gnu++17 -arch arm64 -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wno-unknown-warning-option
+
+CXX_FLAGS = -std=gnu++17 -arch arm64 -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wno-unknown-warning-option
 

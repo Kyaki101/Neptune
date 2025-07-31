@@ -4,9 +4,9 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DSFML_STATIC -DSTBI_FAILURE_USERMSG
 
-CXX_INCLUDES = -I/home/emmanuel/Neptune/build/_deps/sfml-src/include -I/home/emmanuel/Neptune/build/_deps/sfml-src/src -isystem /home/emmanuel/Neptune/build/_deps/sfml-src/extlibs/headers/stb_image -isystem /home/emmanuel/Neptune/build/_deps/sfml-src/extlibs/headers/glad/include -isystem /usr/include/freetype2
+CXX_INCLUDES = -I/Users/emanuelrojas/Neptune/build/_deps/sfml-src/include -I/Users/emanuelrojas/Neptune/build/_deps/sfml-src/src -I/Users/emanuelrojas/Neptune/build/_deps/freetype-build/include -I/Users/emanuelrojas/Neptune/build/_deps/freetype-src/include -isystem /Users/emanuelrojas/Neptune/build/_deps/sfml-src/extlibs/headers/stb_image -isystem /Users/emanuelrojas/Neptune/build/_deps/sfml-src/extlibs/headers/glad/include
 
-CXX_FLAGS = -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wmisleading-indentation -Wduplicated-cond -Wlogical-op -Wduplicated-branches
+CXX_FLAGSarm64 = -std=gnu++17 -arch arm64 -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wno-unknown-warning-option
 
-# Custom flags: _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/Image.cpp.o_FLAGS = -fno-strict-aliasing
+CXX_FLAGS = -std=gnu++17 -arch arm64 -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Wsuggest-override -Wnull-dereference -Wold-style-cast -Wpedantic -Wno-unknown-warning-option
 

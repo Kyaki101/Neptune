@@ -4,7 +4,9 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/emmanuel/Neptune/build/_deps/googletest-src/googlemock/include -I/home/emmanuel/Neptune/build/_deps/googletest-src/googlemock -isystem /home/emmanuel/Neptune/build/_deps/googletest-src/googletest/include -isystem /home/emmanuel/Neptune/build/_deps/googletest-src/googletest
+CXX_INCLUDES = -I/Users/emanuelrojas/Neptune/build/_deps/googletest-src/googlemock/include -I/Users/emanuelrojas/Neptune/build/_deps/googletest-src/googlemock -isystem /Users/emanuelrojas/Neptune/build/_deps/googletest-src/googletest/include -isystem /Users/emanuelrojas/Neptune/build/_deps/googletest-src/googletest
 
-CXX_FLAGS = -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+CXX_FLAGSarm64 = -std=c++14 -arch arm64  -DGTEST_HAS_PTHREAD=1  
+
+CXX_FLAGS = -std=c++14 -arch arm64  -DGTEST_HAS_PTHREAD=1  
 

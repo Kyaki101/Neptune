@@ -1,5 +1,0 @@
-if(EXISTS "/home/emmanuel/Neptune/build/check[1]_tests.cmake")
-  include("/home/emmanuel/Neptune/build/check[1]_tests.cmake")
-else()
-  add_test(check_NOT_BUILT check_NOT_BUILT)
-endif()

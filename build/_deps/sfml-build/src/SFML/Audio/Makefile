@@ -48,27 +48,47 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E rm -f
+RM = /opt/homebrew/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/emmanuel/Neptune
+CMAKE_SOURCE_DIR = /Users/emanuelrojas/Neptune
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/emmanuel/Neptune/build
+CMAKE_BINARY_DIR = /Users/emanuelrojas/Neptune/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target package
+package: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
+	cd /Users/emanuelrojas/Neptune/build && /opt/homebrew/bin/cpack --config ./CPackConfig.cmake
+.PHONY : package
+
+# Special rule for the target package
+package/fast: package
+.PHONY : package/fast
+
+# Special rule for the target package_source
+package_source:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
+	cd /Users/emanuelrojas/Neptune/build && /opt/homebrew/bin/cpack --config ./CPackSourceConfig.cmake /Users/emanuelrojas/Neptune/build/CPackSourceConfig.cmake
+.PHONY : package_source
+
+# Special rule for the target package_source
+package_source/fast: package_source
+.PHONY : package_source/fast
+
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
-	/usr/bin/ctest $(ARGS)
+	/opt/homebrew/bin/ctest $(ARGS)
 .PHONY : test
 
 # Special rule for the target test
@@ -78,7 +98,7 @@ test/fast: test
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/homebrew/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -88,7 +108,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/homebrew/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -97,7 +117,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"devel\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"devel\" \"headers\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -107,56 +127,56 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/emmanuel/Neptune/build/CMakeFiles /home/emmanuel/Neptune/build/_deps/sfml-build/src/SFML/Audio//CMakeFiles/progress.marks
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/Audio/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/emmanuel/Neptune/build/CMakeFiles 0
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/emanuelrojas/Neptune/build/CMakeFiles /Users/emanuelrojas/Neptune/build/_deps/sfml-build/src/SFML/Audio//CMakeFiles/progress.marks
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/Audio/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/emanuelrojas/Neptune/build/CMakeFiles 0
 .PHONY : all
 
 # The main codegen target
 codegen: cmake_check_build_system
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/emmanuel/Neptune/build/CMakeFiles /home/emmanuel/Neptune/build/_deps/sfml-build/src/SFML/Audio//CMakeFiles/progress.marks
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/Audio/codegen
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/emmanuel/Neptune/build/CMakeFiles 0
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/emanuelrojas/Neptune/build/CMakeFiles /Users/emanuelrojas/Neptune/build/_deps/sfml-build/src/SFML/Audio//CMakeFiles/progress.marks
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/Audio/codegen
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/emanuelrojas/Neptune/build/CMakeFiles 0
 .PHONY : codegen
 
 # The main clean target
 clean:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/Audio/clean
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/Audio/clean
 .PHONY : clean
 
 # The main clean target
@@ -165,23 +185,23 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/Audio/preinstall
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/Audio/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/Audio/preinstall
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/Audio/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -P /home/emmanuel/Neptune/build/CMakeFiles/VerifyGlobs.cmake
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -P /Users/emanuelrojas/Neptune/build/CMakeFiles/VerifyGlobs.cmake
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/rule:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/rule
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/rule
 .PHONY : _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/rule
 
 # Convenience name for target.
@@ -190,7 +210,7 @@ sfml-audio: _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/rule
 
 # fast build rule for target.
 sfml-audio/fast:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build
 .PHONY : sfml-audio/fast
 
 AudioDevice.o: AudioDevice.cpp.o
@@ -198,7 +218,7 @@ AudioDevice.o: AudioDevice.cpp.o
 
 # target to build an object file
 AudioDevice.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o
 .PHONY : AudioDevice.cpp.o
 
 AudioDevice.i: AudioDevice.cpp.i
@@ -206,7 +226,7 @@ AudioDevice.i: AudioDevice.cpp.i
 
 # target to preprocess a source file
 AudioDevice.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.i
 .PHONY : AudioDevice.cpp.i
 
 AudioDevice.s: AudioDevice.cpp.s
@@ -214,7 +234,7 @@ AudioDevice.s: AudioDevice.cpp.s
 
 # target to generate assembly for a file
 AudioDevice.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.s
 .PHONY : AudioDevice.cpp.s
 
 AudioResource.o: AudioResource.cpp.o
@@ -222,7 +242,7 @@ AudioResource.o: AudioResource.cpp.o
 
 # target to build an object file
 AudioResource.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.o
 .PHONY : AudioResource.cpp.o
 
 AudioResource.i: AudioResource.cpp.i
@@ -230,7 +250,7 @@ AudioResource.i: AudioResource.cpp.i
 
 # target to preprocess a source file
 AudioResource.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.i
 .PHONY : AudioResource.cpp.i
 
 AudioResource.s: AudioResource.cpp.s
@@ -238,7 +258,7 @@ AudioResource.s: AudioResource.cpp.s
 
 # target to generate assembly for a file
 AudioResource.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioResource.cpp.s
 .PHONY : AudioResource.cpp.s
 
 InputSoundFile.o: InputSoundFile.cpp.o
@@ -246,7 +266,7 @@ InputSoundFile.o: InputSoundFile.cpp.o
 
 # target to build an object file
 InputSoundFile.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o
 .PHONY : InputSoundFile.cpp.o
 
 InputSoundFile.i: InputSoundFile.cpp.i
@@ -254,7 +274,7 @@ InputSoundFile.i: InputSoundFile.cpp.i
 
 # target to preprocess a source file
 InputSoundFile.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.i
 .PHONY : InputSoundFile.cpp.i
 
 InputSoundFile.s: InputSoundFile.cpp.s
@@ -262,7 +282,7 @@ InputSoundFile.s: InputSoundFile.cpp.s
 
 # target to generate assembly for a file
 InputSoundFile.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.s
 .PHONY : InputSoundFile.cpp.s
 
 Listener.o: Listener.cpp.o
@@ -270,7 +290,7 @@ Listener.o: Listener.cpp.o
 
 # target to build an object file
 Listener.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o
 .PHONY : Listener.cpp.o
 
 Listener.i: Listener.cpp.i
@@ -278,7 +298,7 @@ Listener.i: Listener.cpp.i
 
 # target to preprocess a source file
 Listener.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.i
 .PHONY : Listener.cpp.i
 
 Listener.s: Listener.cpp.s
@@ -286,7 +306,7 @@ Listener.s: Listener.cpp.s
 
 # target to generate assembly for a file
 Listener.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.s
 .PHONY : Listener.cpp.s
 
 Miniaudio.o: Miniaudio.cpp.o
@@ -294,7 +314,7 @@ Miniaudio.o: Miniaudio.cpp.o
 
 # target to build an object file
 Miniaudio.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.o
 .PHONY : Miniaudio.cpp.o
 
 Miniaudio.i: Miniaudio.cpp.i
@@ -302,7 +322,7 @@ Miniaudio.i: Miniaudio.cpp.i
 
 # target to preprocess a source file
 Miniaudio.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.i
 .PHONY : Miniaudio.cpp.i
 
 Miniaudio.s: Miniaudio.cpp.s
@@ -310,7 +330,7 @@ Miniaudio.s: Miniaudio.cpp.s
 
 # target to generate assembly for a file
 Miniaudio.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Miniaudio.cpp.s
 .PHONY : Miniaudio.cpp.s
 
 MiniaudioUtils.o: MiniaudioUtils.cpp.o
@@ -318,7 +338,7 @@ MiniaudioUtils.o: MiniaudioUtils.cpp.o
 
 # target to build an object file
 MiniaudioUtils.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.o
 .PHONY : MiniaudioUtils.cpp.o
 
 MiniaudioUtils.i: MiniaudioUtils.cpp.i
@@ -326,7 +346,7 @@ MiniaudioUtils.i: MiniaudioUtils.cpp.i
 
 # target to preprocess a source file
 MiniaudioUtils.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.i
 .PHONY : MiniaudioUtils.cpp.i
 
 MiniaudioUtils.s: MiniaudioUtils.cpp.s
@@ -334,7 +354,7 @@ MiniaudioUtils.s: MiniaudioUtils.cpp.s
 
 # target to generate assembly for a file
 MiniaudioUtils.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/MiniaudioUtils.cpp.s
 .PHONY : MiniaudioUtils.cpp.s
 
 Music.o: Music.cpp.o
@@ -342,7 +362,7 @@ Music.o: Music.cpp.o
 
 # target to build an object file
 Music.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o
 .PHONY : Music.cpp.o
 
 Music.i: Music.cpp.i
@@ -350,7 +370,7 @@ Music.i: Music.cpp.i
 
 # target to preprocess a source file
 Music.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.i
 .PHONY : Music.cpp.i
 
 Music.s: Music.cpp.s
@@ -358,7 +378,7 @@ Music.s: Music.cpp.s
 
 # target to generate assembly for a file
 Music.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.s
 .PHONY : Music.cpp.s
 
 OutputSoundFile.o: OutputSoundFile.cpp.o
@@ -366,7 +386,7 @@ OutputSoundFile.o: OutputSoundFile.cpp.o
 
 # target to build an object file
 OutputSoundFile.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o
 .PHONY : OutputSoundFile.cpp.o
 
 OutputSoundFile.i: OutputSoundFile.cpp.i
@@ -374,7 +394,7 @@ OutputSoundFile.i: OutputSoundFile.cpp.i
 
 # target to preprocess a source file
 OutputSoundFile.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.i
 .PHONY : OutputSoundFile.cpp.i
 
 OutputSoundFile.s: OutputSoundFile.cpp.s
@@ -382,7 +402,7 @@ OutputSoundFile.s: OutputSoundFile.cpp.s
 
 # target to generate assembly for a file
 OutputSoundFile.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.s
 .PHONY : OutputSoundFile.cpp.s
 
 PlaybackDevice.o: PlaybackDevice.cpp.o
@@ -390,7 +410,7 @@ PlaybackDevice.o: PlaybackDevice.cpp.o
 
 # target to build an object file
 PlaybackDevice.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.o
 .PHONY : PlaybackDevice.cpp.o
 
 PlaybackDevice.i: PlaybackDevice.cpp.i
@@ -398,7 +418,7 @@ PlaybackDevice.i: PlaybackDevice.cpp.i
 
 # target to preprocess a source file
 PlaybackDevice.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.i
 .PHONY : PlaybackDevice.cpp.i
 
 PlaybackDevice.s: PlaybackDevice.cpp.s
@@ -406,7 +426,7 @@ PlaybackDevice.s: PlaybackDevice.cpp.s
 
 # target to generate assembly for a file
 PlaybackDevice.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/PlaybackDevice.cpp.s
 .PHONY : PlaybackDevice.cpp.s
 
 Sound.o: Sound.cpp.o
@@ -414,7 +434,7 @@ Sound.o: Sound.cpp.o
 
 # target to build an object file
 Sound.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o
 .PHONY : Sound.cpp.o
 
 Sound.i: Sound.cpp.i
@@ -422,7 +442,7 @@ Sound.i: Sound.cpp.i
 
 # target to preprocess a source file
 Sound.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.i
 .PHONY : Sound.cpp.i
 
 Sound.s: Sound.cpp.s
@@ -430,7 +450,7 @@ Sound.s: Sound.cpp.s
 
 # target to generate assembly for a file
 Sound.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.s
 .PHONY : Sound.cpp.s
 
 SoundBuffer.o: SoundBuffer.cpp.o
@@ -438,7 +458,7 @@ SoundBuffer.o: SoundBuffer.cpp.o
 
 # target to build an object file
 SoundBuffer.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o
 .PHONY : SoundBuffer.cpp.o
 
 SoundBuffer.i: SoundBuffer.cpp.i
@@ -446,7 +466,7 @@ SoundBuffer.i: SoundBuffer.cpp.i
 
 # target to preprocess a source file
 SoundBuffer.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.i
 .PHONY : SoundBuffer.cpp.i
 
 SoundBuffer.s: SoundBuffer.cpp.s
@@ -454,7 +474,7 @@ SoundBuffer.s: SoundBuffer.cpp.s
 
 # target to generate assembly for a file
 SoundBuffer.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.s
 .PHONY : SoundBuffer.cpp.s
 
 SoundBufferRecorder.o: SoundBufferRecorder.cpp.o
@@ -462,7 +482,7 @@ SoundBufferRecorder.o: SoundBufferRecorder.cpp.o
 
 # target to build an object file
 SoundBufferRecorder.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o
 .PHONY : SoundBufferRecorder.cpp.o
 
 SoundBufferRecorder.i: SoundBufferRecorder.cpp.i
@@ -470,7 +490,7 @@ SoundBufferRecorder.i: SoundBufferRecorder.cpp.i
 
 # target to preprocess a source file
 SoundBufferRecorder.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.i
 .PHONY : SoundBufferRecorder.cpp.i
 
 SoundBufferRecorder.s: SoundBufferRecorder.cpp.s
@@ -478,7 +498,7 @@ SoundBufferRecorder.s: SoundBufferRecorder.cpp.s
 
 # target to generate assembly for a file
 SoundBufferRecorder.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.s
 .PHONY : SoundBufferRecorder.cpp.s
 
 SoundFileFactory.o: SoundFileFactory.cpp.o
@@ -486,7 +506,7 @@ SoundFileFactory.o: SoundFileFactory.cpp.o
 
 # target to build an object file
 SoundFileFactory.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o
 .PHONY : SoundFileFactory.cpp.o
 
 SoundFileFactory.i: SoundFileFactory.cpp.i
@@ -494,7 +514,7 @@ SoundFileFactory.i: SoundFileFactory.cpp.i
 
 # target to preprocess a source file
 SoundFileFactory.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.i
 .PHONY : SoundFileFactory.cpp.i
 
 SoundFileFactory.s: SoundFileFactory.cpp.s
@@ -502,7 +522,7 @@ SoundFileFactory.s: SoundFileFactory.cpp.s
 
 # target to generate assembly for a file
 SoundFileFactory.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.s
 .PHONY : SoundFileFactory.cpp.s
 
 SoundFileReaderFlac.o: SoundFileReaderFlac.cpp.o
@@ -510,7 +530,7 @@ SoundFileReaderFlac.o: SoundFileReaderFlac.cpp.o
 
 # target to build an object file
 SoundFileReaderFlac.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o
 .PHONY : SoundFileReaderFlac.cpp.o
 
 SoundFileReaderFlac.i: SoundFileReaderFlac.cpp.i
@@ -518,7 +538,7 @@ SoundFileReaderFlac.i: SoundFileReaderFlac.cpp.i
 
 # target to preprocess a source file
 SoundFileReaderFlac.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.i
 .PHONY : SoundFileReaderFlac.cpp.i
 
 SoundFileReaderFlac.s: SoundFileReaderFlac.cpp.s
@@ -526,7 +546,7 @@ SoundFileReaderFlac.s: SoundFileReaderFlac.cpp.s
 
 # target to generate assembly for a file
 SoundFileReaderFlac.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.s
 .PHONY : SoundFileReaderFlac.cpp.s
 
 SoundFileReaderMp3.o: SoundFileReaderMp3.cpp.o
@@ -534,7 +554,7 @@ SoundFileReaderMp3.o: SoundFileReaderMp3.cpp.o
 
 # target to build an object file
 SoundFileReaderMp3.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.o
 .PHONY : SoundFileReaderMp3.cpp.o
 
 SoundFileReaderMp3.i: SoundFileReaderMp3.cpp.i
@@ -542,7 +562,7 @@ SoundFileReaderMp3.i: SoundFileReaderMp3.cpp.i
 
 # target to preprocess a source file
 SoundFileReaderMp3.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.i
 .PHONY : SoundFileReaderMp3.cpp.i
 
 SoundFileReaderMp3.s: SoundFileReaderMp3.cpp.s
@@ -550,7 +570,7 @@ SoundFileReaderMp3.s: SoundFileReaderMp3.cpp.s
 
 # target to generate assembly for a file
 SoundFileReaderMp3.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.s
 .PHONY : SoundFileReaderMp3.cpp.s
 
 SoundFileReaderOgg.o: SoundFileReaderOgg.cpp.o
@@ -558,7 +578,7 @@ SoundFileReaderOgg.o: SoundFileReaderOgg.cpp.o
 
 # target to build an object file
 SoundFileReaderOgg.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o
 .PHONY : SoundFileReaderOgg.cpp.o
 
 SoundFileReaderOgg.i: SoundFileReaderOgg.cpp.i
@@ -566,7 +586,7 @@ SoundFileReaderOgg.i: SoundFileReaderOgg.cpp.i
 
 # target to preprocess a source file
 SoundFileReaderOgg.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.i
 .PHONY : SoundFileReaderOgg.cpp.i
 
 SoundFileReaderOgg.s: SoundFileReaderOgg.cpp.s
@@ -574,7 +594,7 @@ SoundFileReaderOgg.s: SoundFileReaderOgg.cpp.s
 
 # target to generate assembly for a file
 SoundFileReaderOgg.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.s
 .PHONY : SoundFileReaderOgg.cpp.s
 
 SoundFileReaderWav.o: SoundFileReaderWav.cpp.o
@@ -582,7 +602,7 @@ SoundFileReaderWav.o: SoundFileReaderWav.cpp.o
 
 # target to build an object file
 SoundFileReaderWav.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o
 .PHONY : SoundFileReaderWav.cpp.o
 
 SoundFileReaderWav.i: SoundFileReaderWav.cpp.i
@@ -590,7 +610,7 @@ SoundFileReaderWav.i: SoundFileReaderWav.cpp.i
 
 # target to preprocess a source file
 SoundFileReaderWav.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.i
 .PHONY : SoundFileReaderWav.cpp.i
 
 SoundFileReaderWav.s: SoundFileReaderWav.cpp.s
@@ -598,7 +618,7 @@ SoundFileReaderWav.s: SoundFileReaderWav.cpp.s
 
 # target to generate assembly for a file
 SoundFileReaderWav.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.s
 .PHONY : SoundFileReaderWav.cpp.s
 
 SoundFileWriterFlac.o: SoundFileWriterFlac.cpp.o
@@ -606,7 +626,7 @@ SoundFileWriterFlac.o: SoundFileWriterFlac.cpp.o
 
 # target to build an object file
 SoundFileWriterFlac.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o
 .PHONY : SoundFileWriterFlac.cpp.o
 
 SoundFileWriterFlac.i: SoundFileWriterFlac.cpp.i
@@ -614,7 +634,7 @@ SoundFileWriterFlac.i: SoundFileWriterFlac.cpp.i
 
 # target to preprocess a source file
 SoundFileWriterFlac.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.i
 .PHONY : SoundFileWriterFlac.cpp.i
 
 SoundFileWriterFlac.s: SoundFileWriterFlac.cpp.s
@@ -622,7 +642,7 @@ SoundFileWriterFlac.s: SoundFileWriterFlac.cpp.s
 
 # target to generate assembly for a file
 SoundFileWriterFlac.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.s
 .PHONY : SoundFileWriterFlac.cpp.s
 
 SoundFileWriterOgg.o: SoundFileWriterOgg.cpp.o
@@ -630,7 +650,7 @@ SoundFileWriterOgg.o: SoundFileWriterOgg.cpp.o
 
 # target to build an object file
 SoundFileWriterOgg.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o
 .PHONY : SoundFileWriterOgg.cpp.o
 
 SoundFileWriterOgg.i: SoundFileWriterOgg.cpp.i
@@ -638,7 +658,7 @@ SoundFileWriterOgg.i: SoundFileWriterOgg.cpp.i
 
 # target to preprocess a source file
 SoundFileWriterOgg.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.i
 .PHONY : SoundFileWriterOgg.cpp.i
 
 SoundFileWriterOgg.s: SoundFileWriterOgg.cpp.s
@@ -646,7 +666,7 @@ SoundFileWriterOgg.s: SoundFileWriterOgg.cpp.s
 
 # target to generate assembly for a file
 SoundFileWriterOgg.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.s
 .PHONY : SoundFileWriterOgg.cpp.s
 
 SoundFileWriterWav.o: SoundFileWriterWav.cpp.o
@@ -654,7 +674,7 @@ SoundFileWriterWav.o: SoundFileWriterWav.cpp.o
 
 # target to build an object file
 SoundFileWriterWav.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o
 .PHONY : SoundFileWriterWav.cpp.o
 
 SoundFileWriterWav.i: SoundFileWriterWav.cpp.i
@@ -662,7 +682,7 @@ SoundFileWriterWav.i: SoundFileWriterWav.cpp.i
 
 # target to preprocess a source file
 SoundFileWriterWav.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.i
 .PHONY : SoundFileWriterWav.cpp.i
 
 SoundFileWriterWav.s: SoundFileWriterWav.cpp.s
@@ -670,7 +690,7 @@ SoundFileWriterWav.s: SoundFileWriterWav.cpp.s
 
 # target to generate assembly for a file
 SoundFileWriterWav.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.s
 .PHONY : SoundFileWriterWav.cpp.s
 
 SoundRecorder.o: SoundRecorder.cpp.o
@@ -678,7 +698,7 @@ SoundRecorder.o: SoundRecorder.cpp.o
 
 # target to build an object file
 SoundRecorder.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o
 .PHONY : SoundRecorder.cpp.o
 
 SoundRecorder.i: SoundRecorder.cpp.i
@@ -686,7 +706,7 @@ SoundRecorder.i: SoundRecorder.cpp.i
 
 # target to preprocess a source file
 SoundRecorder.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.i
 .PHONY : SoundRecorder.cpp.i
 
 SoundRecorder.s: SoundRecorder.cpp.s
@@ -694,7 +714,7 @@ SoundRecorder.s: SoundRecorder.cpp.s
 
 # target to generate assembly for a file
 SoundRecorder.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.s
 .PHONY : SoundRecorder.cpp.s
 
 SoundSource.o: SoundSource.cpp.o
@@ -702,7 +722,7 @@ SoundSource.o: SoundSource.cpp.o
 
 # target to build an object file
 SoundSource.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o
 .PHONY : SoundSource.cpp.o
 
 SoundSource.i: SoundSource.cpp.i
@@ -710,7 +730,7 @@ SoundSource.i: SoundSource.cpp.i
 
 # target to preprocess a source file
 SoundSource.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.i
 .PHONY : SoundSource.cpp.i
 
 SoundSource.s: SoundSource.cpp.s
@@ -718,7 +738,7 @@ SoundSource.s: SoundSource.cpp.s
 
 # target to generate assembly for a file
 SoundSource.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.s
 .PHONY : SoundSource.cpp.s
 
 SoundStream.o: SoundStream.cpp.o
@@ -726,7 +746,7 @@ SoundStream.o: SoundStream.cpp.o
 
 # target to build an object file
 SoundStream.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o
 .PHONY : SoundStream.cpp.o
 
 SoundStream.i: SoundStream.cpp.i
@@ -734,7 +754,7 @@ SoundStream.i: SoundStream.cpp.i
 
 # target to preprocess a source file
 SoundStream.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.i
 .PHONY : SoundStream.cpp.i
 
 SoundStream.s: SoundStream.cpp.s
@@ -742,7 +762,7 @@ SoundStream.s: SoundStream.cpp.s
 
 # target to generate assembly for a file
 SoundStream.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.s
 .PHONY : SoundStream.cpp.s
 
 # Help Target
@@ -757,6 +777,8 @@ help:
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
+	@echo "... package"
+	@echo "... package_source"
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... sfml-audio"
@@ -840,7 +862,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -P /home/emmanuel/Neptune/build/CMakeFiles/VerifyGlobs.cmake
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -P /Users/emanuelrojas/Neptune/build/CMakeFiles/VerifyGlobs.cmake
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

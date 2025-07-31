@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E rm -f
+RM = /opt/homebrew/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/emmanuel/Neptune
+CMAKE_SOURCE_DIR = /Users/emanuelrojas/Neptune
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/emmanuel/Neptune/build
+CMAKE_BINARY_DIR = /Users/emanuelrojas/Neptune/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/linear_algebra_tests.dir/depend.make
@@ -73,18 +73,18 @@ CMakeFiles/linear_algebra_tests.dir/codegen:
 .PHONY : CMakeFiles/linear_algebra_tests.dir/codegen
 
 CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o: CMakeFiles/linear_algebra_tests.dir/flags.make
-CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o: /home/emmanuel/Neptune/tests/linear_algebra_tests.cpp
+CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o: /Users/emanuelrojas/Neptune/tests/linear_algebra_tests.cpp
 CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o: CMakeFiles/linear_algebra_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/emmanuel/Neptune/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o -MF CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o.d -o CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o -c /home/emmanuel/Neptune/tests/linear_algebra_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/emanuelrojas/Neptune/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o -MF CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o.d -o CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o -c /Users/emanuelrojas/Neptune/tests/linear_algebra_tests.cpp
 
 CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/emmanuel/Neptune/tests/linear_algebra_tests.cpp > CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/emanuelrojas/Neptune/tests/linear_algebra_tests.cpp > CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.i
 
 CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/emmanuel/Neptune/tests/linear_algebra_tests.cpp -o CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/emanuelrojas/Neptune/tests/linear_algebra_tests.cpp -o CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.s
 
 # Object files for target linear_algebra_tests
 linear_algebra_tests_OBJECTS = \
@@ -95,14 +95,13 @@ linear_algebra_tests_EXTERNAL_OBJECTS =
 
 linear_algebra_tests: CMakeFiles/linear_algebra_tests.dir/tests/linear_algebra_tests.cpp.o
 linear_algebra_tests: CMakeFiles/linear_algebra_tests.dir/build.make
-linear_algebra_tests: CMakeFiles/linear_algebra_tests.dir/compiler_depend.ts
 linear_algebra_tests: libneptune.a
 linear_algebra_tests: lib/libgtest_main.a
 linear_algebra_tests: lib/libgtest.a
 linear_algebra_tests: CMakeFiles/linear_algebra_tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/emmanuel/Neptune/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable linear_algebra_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/emanuelrojas/Neptune/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable linear_algebra_tests"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/linear_algebra_tests.dir/link.txt --verbose=$(VERBOSE)
-	/usr/bin/cmake -D TEST_TARGET=linear_algebra_tests -D TEST_EXECUTABLE=/home/emmanuel/Neptune/build/linear_algebra_tests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/emmanuel/Neptune/build -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=linear_algebra_tests_TESTS -D CTEST_FILE=/home/emmanuel/Neptune/build/linear_algebra_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_DISCOVERY_EXTRA_ARGS= -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake/Modules/GoogleTestAddTests.cmake
+	/opt/homebrew/bin/cmake -D TEST_TARGET=linear_algebra_tests -D TEST_EXECUTABLE=/Users/emanuelrojas/Neptune/build/linear_algebra_tests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/Users/emanuelrojas/Neptune/build -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=linear_algebra_tests_TESTS -D CTEST_FILE=/Users/emanuelrojas/Neptune/build/linear_algebra_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_DISCOVERY_EXTRA_ARGS= -D TEST_XML_OUTPUT_DIR= -P /opt/homebrew/share/cmake/Modules/GoogleTestAddTests.cmake
 
 # Rule to build all files generated by this target.
 CMakeFiles/linear_algebra_tests.dir/build: linear_algebra_tests
@@ -113,6 +112,6 @@ CMakeFiles/linear_algebra_tests.dir/clean:
 .PHONY : CMakeFiles/linear_algebra_tests.dir/clean
 
 CMakeFiles/linear_algebra_tests.dir/depend:
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/emmanuel/Neptune /home/emmanuel/Neptune /home/emmanuel/Neptune/build /home/emmanuel/Neptune/build /home/emmanuel/Neptune/build/CMakeFiles/linear_algebra_tests.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/emanuelrojas/Neptune /Users/emanuelrojas/Neptune /Users/emanuelrojas/Neptune/build /Users/emanuelrojas/Neptune/build /Users/emanuelrojas/Neptune/build/CMakeFiles/linear_algebra_tests.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/linear_algebra_tests.dir/depend
 

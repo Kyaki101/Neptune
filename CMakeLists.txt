@@ -18,6 +18,10 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(sfml googletest)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+
 # Gather all source files under src/
 file(GLOB_RECURSE ALL_SRC CONFIGURE_DEPENDS src/*.cpp)
 

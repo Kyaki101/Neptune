@@ -4,7 +4,9 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DSFML_STATIC
 
-CXX_INCLUDES = -I/home/emmanuel/Neptune/src -I/home/emmanuel/Neptune/build/_deps/sfml-src/include
+CXX_INCLUDES = -I/Users/emanuelrojas/Neptune/src -I/Users/emanuelrojas/Neptune/build/_deps/sfml-src/include
 
-CXX_FLAGS = 
+CXX_FLAGSarm64 = -std=gnu++17 -arch arm64
+
+CXX_FLAGS = -std=gnu++17 -arch arm64
 

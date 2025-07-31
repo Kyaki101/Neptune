@@ -3,11 +3,11 @@
 
 cmake_minimum_required(VERSION ${CMAKE_VERSION}) # this file comes with cmake
 
-if(EXISTS "/home/emmanuel/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitclone-lastrun.txt" AND EXISTS "/home/emmanuel/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitinfo.txt" AND
-  "/home/emmanuel/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitclone-lastrun.txt" IS_NEWER_THAN "/home/emmanuel/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitinfo.txt")
+if(EXISTS "/Users/emanuelrojas/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitclone-lastrun.txt" AND EXISTS "/Users/emanuelrojas/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitinfo.txt" AND
+  "/Users/emanuelrojas/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitclone-lastrun.txt" IS_NEWER_THAN "/Users/emanuelrojas/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitinfo.txt")
   message(VERBOSE
     "Avoiding repeated git clone, stamp file is up to date: "
-    "'/home/emmanuel/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitclone-lastrun.txt'"
+    "'/Users/emanuelrojas/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitclone-lastrun.txt'"
   )
   return()
 endif()
@@ -22,12 +22,12 @@ else()
 endif()
 
 execute_process(
-  COMMAND ${CMAKE_COMMAND} -E rm -rf "/home/emmanuel/Neptune/build/_deps/sfml-src"
+  COMMAND ${CMAKE_COMMAND} -E rm -rf "/Users/emanuelrojas/Neptune/build/_deps/sfml-src"
   RESULT_VARIABLE error_code
   ${maybe_show_command}
 )
 if(error_code)
-  message(FATAL_ERROR "Failed to remove directory: '/home/emmanuel/Neptune/build/_deps/sfml-src'")
+  message(FATAL_ERROR "Failed to remove directory: '/Users/emanuelrojas/Neptune/build/_deps/sfml-src'")
 endif()
 
 # try the clone 3 times in case there is an odd git clone issue
@@ -37,7 +37,7 @@ while(error_code AND number_of_tries LESS 3)
   execute_process(
     COMMAND "/usr/bin/git"
             clone --no-checkout --config "advice.detachedHead=false" "https://github.com/SFML/SFML.git" "sfml-src"
-    WORKING_DIRECTORY "/home/emmanuel/Neptune/build/_deps"
+    WORKING_DIRECTORY "/Users/emanuelrojas/Neptune/build/_deps"
     RESULT_VARIABLE error_code
     ${maybe_show_command}
   )
@@ -53,7 +53,7 @@ endif()
 execute_process(
   COMMAND "/usr/bin/git"
           checkout "3.0.1" --
-  WORKING_DIRECTORY "/home/emmanuel/Neptune/build/_deps/sfml-src"
+  WORKING_DIRECTORY "/Users/emanuelrojas/Neptune/build/_deps/sfml-src"
   RESULT_VARIABLE error_code
   ${maybe_show_command}
 )
@@ -66,22 +66,22 @@ if(init_submodules)
   execute_process(
     COMMAND "/usr/bin/git" 
             submodule update --recursive --init 
-    WORKING_DIRECTORY "/home/emmanuel/Neptune/build/_deps/sfml-src"
+    WORKING_DIRECTORY "/Users/emanuelrojas/Neptune/build/_deps/sfml-src"
     RESULT_VARIABLE error_code
     ${maybe_show_command}
   )
 endif()
 if(error_code)
-  message(FATAL_ERROR "Failed to update submodules in: '/home/emmanuel/Neptune/build/_deps/sfml-src'")
+  message(FATAL_ERROR "Failed to update submodules in: '/Users/emanuelrojas/Neptune/build/_deps/sfml-src'")
 endif()
 
 # Complete success, update the script-last-run stamp file:
 #
 execute_process(
-  COMMAND ${CMAKE_COMMAND} -E copy "/home/emmanuel/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitinfo.txt" "/home/emmanuel/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitclone-lastrun.txt"
+  COMMAND ${CMAKE_COMMAND} -E copy "/Users/emanuelrojas/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitinfo.txt" "/Users/emanuelrojas/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitclone-lastrun.txt"
   RESULT_VARIABLE error_code
   ${maybe_show_command}
 )
 if(error_code)
-  message(FATAL_ERROR "Failed to copy script-last-run stamp file: '/home/emmanuel/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitclone-lastrun.txt'")
+  message(FATAL_ERROR "Failed to copy script-last-run stamp file: '/Users/emanuelrojas/Neptune/build/CMakeFiles/fc-stamp/sfml/sfml-gitclone-lastrun.txt'")
 endif()

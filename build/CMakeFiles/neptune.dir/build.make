@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E rm -f
+RM = /opt/homebrew/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/emmanuel/Neptune
+CMAKE_SOURCE_DIR = /Users/emanuelrojas/Neptune
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/emmanuel/Neptune/build
+CMAKE_BINARY_DIR = /Users/emanuelrojas/Neptune/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/neptune.dir/depend.make
@@ -73,18 +73,18 @@ CMakeFiles/neptune.dir/codegen:
 .PHONY : CMakeFiles/neptune.dir/codegen
 
 CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o: CMakeFiles/neptune.dir/flags.make
-CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o: /home/emmanuel/Neptune/src/linear_algebra/vector2d.cpp
+CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o: /Users/emanuelrojas/Neptune/src/linear_algebra/vector2d.cpp
 CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o: CMakeFiles/neptune.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/emmanuel/Neptune/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o -MF CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o.d -o CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o -c /home/emmanuel/Neptune/src/linear_algebra/vector2d.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/emanuelrojas/Neptune/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o -MF CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o.d -o CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o -c /Users/emanuelrojas/Neptune/src/linear_algebra/vector2d.cpp
 
 CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/emmanuel/Neptune/src/linear_algebra/vector2d.cpp > CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/emanuelrojas/Neptune/src/linear_algebra/vector2d.cpp > CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.i
 
 CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/emmanuel/Neptune/src/linear_algebra/vector2d.cpp -o CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/emanuelrojas/Neptune/src/linear_algebra/vector2d.cpp -o CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.s
 
 # Object files for target neptune
 neptune_OBJECTS = \
@@ -96,7 +96,7 @@ neptune_EXTERNAL_OBJECTS =
 libneptune.a: CMakeFiles/neptune.dir/src/linear_algebra/vector2d.cpp.o
 libneptune.a: CMakeFiles/neptune.dir/build.make
 libneptune.a: CMakeFiles/neptune.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/emmanuel/Neptune/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libneptune.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/emanuelrojas/Neptune/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libneptune.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/neptune.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/neptune.dir/link.txt --verbose=$(VERBOSE)
 
@@ -109,6 +109,6 @@ CMakeFiles/neptune.dir/clean:
 .PHONY : CMakeFiles/neptune.dir/clean
 
 CMakeFiles/neptune.dir/depend:
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/emmanuel/Neptune /home/emmanuel/Neptune /home/emmanuel/Neptune/build /home/emmanuel/Neptune/build /home/emmanuel/Neptune/build/CMakeFiles/neptune.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/emanuelrojas/Neptune /Users/emanuelrojas/Neptune /Users/emanuelrojas/Neptune/build /Users/emanuelrojas/Neptune/build /Users/emanuelrojas/Neptune/build/CMakeFiles/neptune.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/neptune.dir/depend
 

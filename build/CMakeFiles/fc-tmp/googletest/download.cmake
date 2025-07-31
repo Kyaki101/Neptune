@@ -4,9 +4,9 @@ message(VERBOSE "Executing download step for googletest")
 
 block(SCOPE_FOR VARIABLES)
 
-include("/home/emmanuel/Neptune/build/CMakeFiles/fc-stamp/googletest/download-googletest.cmake")
-include("/home/emmanuel/Neptune/build/CMakeFiles/fc-stamp/googletest/verify-googletest.cmake")
-include("/home/emmanuel/Neptune/build/CMakeFiles/fc-stamp/googletest/extract-googletest.cmake")
+include("/Users/emanuelrojas/Neptune/build/CMakeFiles/fc-stamp/googletest/download-googletest.cmake")
+include("/Users/emanuelrojas/Neptune/build/CMakeFiles/fc-stamp/googletest/verify-googletest.cmake")
+include("/Users/emanuelrojas/Neptune/build/CMakeFiles/fc-stamp/googletest/extract-googletest.cmake")
 
 
 endblock()

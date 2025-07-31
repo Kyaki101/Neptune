@@ -4,7 +4,9 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/emmanuel/Neptune/src -isystem /home/emmanuel/Neptune/build/_deps/googletest-src/googletest/include -isystem /home/emmanuel/Neptune/build/_deps/googletest-src/googletest
+CXX_INCLUDES = -I/Users/emanuelrojas/Neptune/src -isystem /Users/emanuelrojas/Neptune/build/_deps/googletest-src/googletest/include -isystem /Users/emanuelrojas/Neptune/build/_deps/googletest-src/googletest
 
-CXX_FLAGS = 
+CXX_FLAGSarm64 = -std=gnu++17 -arch arm64
+
+CXX_FLAGS = -std=gnu++17 -arch arm64
 

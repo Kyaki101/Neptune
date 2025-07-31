@@ -48,27 +48,47 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E rm -f
+RM = /opt/homebrew/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/emmanuel/Neptune
+CMAKE_SOURCE_DIR = /Users/emanuelrojas/Neptune
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/emmanuel/Neptune/build
+CMAKE_BINARY_DIR = /Users/emanuelrojas/Neptune/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target package
+package: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
+	cd /Users/emanuelrojas/Neptune/build && /opt/homebrew/bin/cpack --config ./CPackConfig.cmake
+.PHONY : package
+
+# Special rule for the target package
+package/fast: package
+.PHONY : package/fast
+
+# Special rule for the target package_source
+package_source:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
+	cd /Users/emanuelrojas/Neptune/build && /opt/homebrew/bin/cpack --config ./CPackSourceConfig.cmake /Users/emanuelrojas/Neptune/build/CPackSourceConfig.cmake
+.PHONY : package_source
+
+# Special rule for the target package_source
+package_source/fast: package_source
+.PHONY : package_source/fast
+
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
-	/usr/bin/ctest $(ARGS)
+	/opt/homebrew/bin/ctest $(ARGS)
 .PHONY : test
 
 # Special rule for the target test
@@ -78,7 +98,7 @@ test/fast: test
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/homebrew/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -88,7 +108,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/homebrew/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -97,7 +117,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"devel\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"devel\" \"headers\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -107,56 +127,56 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/emmanuel/Neptune/build/CMakeFiles /home/emmanuel/Neptune/build/_deps/sfml-build/src/SFML/System//CMakeFiles/progress.marks
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/System/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/emmanuel/Neptune/build/CMakeFiles 0
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/emanuelrojas/Neptune/build/CMakeFiles /Users/emanuelrojas/Neptune/build/_deps/sfml-build/src/SFML/System//CMakeFiles/progress.marks
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/System/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/emanuelrojas/Neptune/build/CMakeFiles 0
 .PHONY : all
 
 # The main codegen target
 codegen: cmake_check_build_system
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/emmanuel/Neptune/build/CMakeFiles /home/emmanuel/Neptune/build/_deps/sfml-build/src/SFML/System//CMakeFiles/progress.marks
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/System/codegen
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/emmanuel/Neptune/build/CMakeFiles 0
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/emanuelrojas/Neptune/build/CMakeFiles /Users/emanuelrojas/Neptune/build/_deps/sfml-build/src/SFML/System//CMakeFiles/progress.marks
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/System/codegen
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/emanuelrojas/Neptune/build/CMakeFiles 0
 .PHONY : codegen
 
 # The main clean target
 clean:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/System/clean
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/System/clean
 .PHONY : clean
 
 # The main clean target
@@ -165,23 +185,23 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/System/preinstall
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/System/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/System/preinstall
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/System/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -P /home/emmanuel/Neptune/build/CMakeFiles/VerifyGlobs.cmake
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -P /Users/emanuelrojas/Neptune/build/CMakeFiles/VerifyGlobs.cmake
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/rule:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/rule
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/rule
 .PHONY : _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/rule
 
 # Convenience name for target.
@@ -190,7 +210,7 @@ sfml-system: _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/rule
 
 # fast build rule for target.
 sfml-system/fast:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build
 .PHONY : sfml-system/fast
 
 Clock.o: Clock.cpp.o
@@ -198,7 +218,7 @@ Clock.o: Clock.cpp.o
 
 # target to build an object file
 Clock.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Clock.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Clock.cpp.o
 .PHONY : Clock.cpp.o
 
 Clock.i: Clock.cpp.i
@@ -206,7 +226,7 @@ Clock.i: Clock.cpp.i
 
 # target to preprocess a source file
 Clock.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Clock.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Clock.cpp.i
 .PHONY : Clock.cpp.i
 
 Clock.s: Clock.cpp.s
@@ -214,7 +234,7 @@ Clock.s: Clock.cpp.s
 
 # target to generate assembly for a file
 Clock.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Clock.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Clock.cpp.s
 .PHONY : Clock.cpp.s
 
 Err.o: Err.cpp.o
@@ -222,7 +242,7 @@ Err.o: Err.cpp.o
 
 # target to build an object file
 Err.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Err.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Err.cpp.o
 .PHONY : Err.cpp.o
 
 Err.i: Err.cpp.i
@@ -230,7 +250,7 @@ Err.i: Err.cpp.i
 
 # target to preprocess a source file
 Err.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Err.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Err.cpp.i
 .PHONY : Err.cpp.i
 
 Err.s: Err.cpp.s
@@ -238,7 +258,7 @@ Err.s: Err.cpp.s
 
 # target to generate assembly for a file
 Err.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Err.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Err.cpp.s
 .PHONY : Err.cpp.s
 
 FileInputStream.o: FileInputStream.cpp.o
@@ -246,7 +266,7 @@ FileInputStream.o: FileInputStream.cpp.o
 
 # target to build an object file
 FileInputStream.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/FileInputStream.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/FileInputStream.cpp.o
 .PHONY : FileInputStream.cpp.o
 
 FileInputStream.i: FileInputStream.cpp.i
@@ -254,7 +274,7 @@ FileInputStream.i: FileInputStream.cpp.i
 
 # target to preprocess a source file
 FileInputStream.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/FileInputStream.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/FileInputStream.cpp.i
 .PHONY : FileInputStream.cpp.i
 
 FileInputStream.s: FileInputStream.cpp.s
@@ -262,7 +282,7 @@ FileInputStream.s: FileInputStream.cpp.s
 
 # target to generate assembly for a file
 FileInputStream.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/FileInputStream.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/FileInputStream.cpp.s
 .PHONY : FileInputStream.cpp.s
 
 MemoryInputStream.o: MemoryInputStream.cpp.o
@@ -270,7 +290,7 @@ MemoryInputStream.o: MemoryInputStream.cpp.o
 
 # target to build an object file
 MemoryInputStream.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/MemoryInputStream.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/MemoryInputStream.cpp.o
 .PHONY : MemoryInputStream.cpp.o
 
 MemoryInputStream.i: MemoryInputStream.cpp.i
@@ -278,7 +298,7 @@ MemoryInputStream.i: MemoryInputStream.cpp.i
 
 # target to preprocess a source file
 MemoryInputStream.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/MemoryInputStream.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/MemoryInputStream.cpp.i
 .PHONY : MemoryInputStream.cpp.i
 
 MemoryInputStream.s: MemoryInputStream.cpp.s
@@ -286,7 +306,7 @@ MemoryInputStream.s: MemoryInputStream.cpp.s
 
 # target to generate assembly for a file
 MemoryInputStream.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/MemoryInputStream.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/MemoryInputStream.cpp.s
 .PHONY : MemoryInputStream.cpp.s
 
 Sleep.o: Sleep.cpp.o
@@ -294,7 +314,7 @@ Sleep.o: Sleep.cpp.o
 
 # target to build an object file
 Sleep.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Sleep.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Sleep.cpp.o
 .PHONY : Sleep.cpp.o
 
 Sleep.i: Sleep.cpp.i
@@ -302,7 +322,7 @@ Sleep.i: Sleep.cpp.i
 
 # target to preprocess a source file
 Sleep.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Sleep.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Sleep.cpp.i
 .PHONY : Sleep.cpp.i
 
 Sleep.s: Sleep.cpp.s
@@ -310,7 +330,7 @@ Sleep.s: Sleep.cpp.s
 
 # target to generate assembly for a file
 Sleep.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Sleep.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Sleep.cpp.s
 .PHONY : Sleep.cpp.s
 
 String.o: String.cpp.o
@@ -318,7 +338,7 @@ String.o: String.cpp.o
 
 # target to build an object file
 String.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/String.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/String.cpp.o
 .PHONY : String.cpp.o
 
 String.i: String.cpp.i
@@ -326,7 +346,7 @@ String.i: String.cpp.i
 
 # target to preprocess a source file
 String.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/String.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/String.cpp.i
 .PHONY : String.cpp.i
 
 String.s: String.cpp.s
@@ -334,7 +354,7 @@ String.s: String.cpp.s
 
 # target to generate assembly for a file
 String.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/String.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/String.cpp.s
 .PHONY : String.cpp.s
 
 Unix/SleepImpl.o: Unix/SleepImpl.cpp.o
@@ -342,7 +362,7 @@ Unix/SleepImpl.o: Unix/SleepImpl.cpp.o
 
 # target to build an object file
 Unix/SleepImpl.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Unix/SleepImpl.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Unix/SleepImpl.cpp.o
 .PHONY : Unix/SleepImpl.cpp.o
 
 Unix/SleepImpl.i: Unix/SleepImpl.cpp.i
@@ -350,7 +370,7 @@ Unix/SleepImpl.i: Unix/SleepImpl.cpp.i
 
 # target to preprocess a source file
 Unix/SleepImpl.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Unix/SleepImpl.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Unix/SleepImpl.cpp.i
 .PHONY : Unix/SleepImpl.cpp.i
 
 Unix/SleepImpl.s: Unix/SleepImpl.cpp.s
@@ -358,7 +378,7 @@ Unix/SleepImpl.s: Unix/SleepImpl.cpp.s
 
 # target to generate assembly for a file
 Unix/SleepImpl.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Unix/SleepImpl.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Unix/SleepImpl.cpp.s
 .PHONY : Unix/SleepImpl.cpp.s
 
 Utils.o: Utils.cpp.o
@@ -366,7 +386,7 @@ Utils.o: Utils.cpp.o
 
 # target to build an object file
 Utils.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Utils.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Utils.cpp.o
 .PHONY : Utils.cpp.o
 
 Utils.i: Utils.cpp.i
@@ -374,7 +394,7 @@ Utils.i: Utils.cpp.i
 
 # target to preprocess a source file
 Utils.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Utils.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Utils.cpp.i
 .PHONY : Utils.cpp.i
 
 Utils.s: Utils.cpp.s
@@ -382,7 +402,7 @@ Utils.s: Utils.cpp.s
 
 # target to generate assembly for a file
 Utils.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Utils.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Utils.cpp.s
 .PHONY : Utils.cpp.s
 
 Vector2.o: Vector2.cpp.o
@@ -390,7 +410,7 @@ Vector2.o: Vector2.cpp.o
 
 # target to build an object file
 Vector2.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Vector2.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Vector2.cpp.o
 .PHONY : Vector2.cpp.o
 
 Vector2.i: Vector2.cpp.i
@@ -398,7 +418,7 @@ Vector2.i: Vector2.cpp.i
 
 # target to preprocess a source file
 Vector2.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Vector2.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Vector2.cpp.i
 .PHONY : Vector2.cpp.i
 
 Vector2.s: Vector2.cpp.s
@@ -406,7 +426,7 @@ Vector2.s: Vector2.cpp.s
 
 # target to generate assembly for a file
 Vector2.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Vector2.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Vector2.cpp.s
 .PHONY : Vector2.cpp.s
 
 Vector3.o: Vector3.cpp.o
@@ -414,7 +434,7 @@ Vector3.o: Vector3.cpp.o
 
 # target to build an object file
 Vector3.cpp.o:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Vector3.cpp.o
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Vector3.cpp.o
 .PHONY : Vector3.cpp.o
 
 Vector3.i: Vector3.cpp.i
@@ -422,7 +442,7 @@ Vector3.i: Vector3.cpp.i
 
 # target to preprocess a source file
 Vector3.cpp.i:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Vector3.cpp.i
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Vector3.cpp.i
 .PHONY : Vector3.cpp.i
 
 Vector3.s: Vector3.cpp.s
@@ -430,7 +450,7 @@ Vector3.s: Vector3.cpp.s
 
 # target to generate assembly for a file
 Vector3.cpp.s:
-	cd /home/emmanuel/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Vector3.cpp.s
+	cd /Users/emanuelrojas/Neptune/build && $(MAKE) $(MAKESILENT) -f _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Vector3.cpp.s
 .PHONY : Vector3.cpp.s
 
 # Help Target
@@ -445,6 +465,8 @@ help:
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
+	@echo "... package"
+	@echo "... package_source"
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... sfml-system"
@@ -489,7 +511,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -P /home/emmanuel/Neptune/build/CMakeFiles/VerifyGlobs.cmake
-	cd /home/emmanuel/Neptune/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -P /Users/emanuelrojas/Neptune/build/CMakeFiles/VerifyGlobs.cmake
+	cd /Users/emanuelrojas/Neptune/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
