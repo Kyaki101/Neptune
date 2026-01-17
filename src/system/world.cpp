@@ -8,6 +8,8 @@
 
 using namespace systemS;
 
+std::vector<systemS::State> systemS::World::states;
+
 void World::addState(const systemS::State &state) {
     states.push_back(state);
 }
@@ -16,7 +18,7 @@ std::vector<systemS::State> &World::getStates() {
 }
 
 void World::forceGenerator(systemS::State &s) {
-    return;
+
 }
 
 void World::updateSystem() {

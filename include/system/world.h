@@ -11,16 +11,22 @@ namespace systemS {
 
     class World {
     private:
-        std::vector<systemS::State> states;
+        static std::vector<systemS::State> states;
+
 
     public:
         static constexpr double GRAVITY = 9.81;
-        static constexpr double DIFFERENTIAL = 0.056;
-        World(){}
-        std::vector<systemS::State>& getStates();
-        void addState(const systemS::State& state);
-        void forceGenerator(systemS::State &s);
-        void updateSystem();
+        static constexpr double DIFFERENTIAL = 0.016;
+        static std::vector<systemS::State>& getStates();
+        static void addState(const systemS::State& state);
+        static void forceGenerator(systemS::State &s);
+        static void updateSystem();
+
+        World() = delete;
+        World(const World &) = delete;
+        World(World &&) = delete;
+        World &operator=(const World &) = delete;
+        World &operator=(World &&) = delete;
     };
 }
 

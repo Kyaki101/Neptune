@@ -22,9 +22,9 @@ int main() {
     circle.setFillColor(sf::Color::Black);
     circle.setOutlineThickness(2.0f);
     circle.setOutlineColor(sf::Color::Red);
-    systemS::World world;
     systemS::State test({ WIDTH / 2.0f, HEIGHT / 2.0f }, 5);
-    world.addState(test);
+
+    systemS::World::addState(test);
 
     while (window -> isOpen()) {
         while (const std::optional event = window -> pollEvent()) {
@@ -37,8 +37,8 @@ int main() {
                 }
             }
         }
-        world.updateSystem();
-        auto pos = world.getStates()[0].getPosition();
+        systemS::World::updateSystem();
+        auto pos = systemS::World::getStates()[0].getPosition();
 
         window -> clear(sf::Color::White);
 
