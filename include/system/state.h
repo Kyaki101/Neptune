@@ -22,8 +22,8 @@ namespace systemS {
             velocity(velocity),
             mass(mass){};
 
-        LA::Vector2D getPosition() const;
-        LA::Vector2D getVelocity() const;
+        LA::Vector2D& getPosition();
+        LA::Vector2D& getVelocity();
         systemS::State operator+(systemS::State);
         systemS::State operator-(systemS::State);
         systemS::State operator*(double);

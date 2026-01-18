@@ -19,6 +19,9 @@ add_executable(neptune main.cpp
         system/world.cpp
         odeSolver/derivative.cpp
         physics/circleCollider.cpp
+        physics/collisionSolver.cpp
+        physics/physicsBody.cpp
+        game/gameObject.cpp
 )
 
 target_link_libraries(neptune

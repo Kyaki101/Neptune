@@ -17,6 +17,8 @@ set(SOURCE_FILES main.cpp src/divider_tests.cpp
         ../include/physics/collider.h
         ../include/physics/bodyType.h
         ../include/physics/circleCollider.h
+        ../include/physics/collisionSolver.h
+        ../include/game/gameObject.h
 )
 
 add_executable(divider_tests ${SOURCE_FILES})

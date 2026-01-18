@@ -4,11 +4,11 @@
 #include "system/state.h"
 using namespace systemS;
 
-LA::Vector2D State::getPosition() const {
-    return position;
+LA::Vector2D& State::getPosition() {
+    return this->position;
 }
-LA::Vector2D State::getVelocity() const {
-    return velocity;
+LA::Vector2D& State::getVelocity() {
+    return this->velocity;
 }
 
 double State::getMass() const {
