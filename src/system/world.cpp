@@ -27,4 +27,13 @@ void World::updateSystem() {
     }
 }
 
+void World::checkCollisions() {
+    for (auto &s : states) {
+        for (auto &other : states) {
+
+
+        }
+    }
+}
+
 

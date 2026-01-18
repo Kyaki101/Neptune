@@ -21,6 +21,7 @@ namespace systemS {
         static void addState(const systemS::State& state);
         static void forceGenerator(systemS::State &s);
         static void updateSystem();
+        static void checkCollisions();
 
         World() = delete;
         World(const World &) = delete;

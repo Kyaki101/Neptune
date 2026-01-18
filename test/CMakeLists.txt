@@ -13,6 +13,10 @@ set(SOURCE_FILES main.cpp src/divider_tests.cpp
         ../include/system/world.h
         ../include/odeSolver/derivative.h
         ../src/odeSolver/derivative.cpp
+        ../include/physics/physicsBody.h
+        ../include/physics/collider.h
+        ../include/physics/bodyType.h
+        ../include/physics/circleCollider.h
 )
 
 add_executable(divider_tests ${SOURCE_FILES})

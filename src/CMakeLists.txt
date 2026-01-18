@@ -18,6 +18,7 @@ add_executable(neptune main.cpp
         system/state.cpp
         system/world.cpp
         odeSolver/derivative.cpp
+        physics/circleCollider.cpp
 )
 
 target_link_libraries(neptune

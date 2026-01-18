@@ -11,18 +11,33 @@ constexpr int WIDTH = 1000;
 constexpr int HEIGHT = 600;
 
 int main() {
+    sf::ContextSettings settings;
+    settings.antiAliasingLevel = 8;
     const auto* vector = new LA::Vector2D(2, 3);
     std::cout << vector -> getX() << " " << vector -> getY() << std::endl;
-    sf::RenderWindow * window = new sf::RenderWindow(sf::VideoMode({WIDTH, HEIGHT}), "Title");
+    sf::RenderWindow * window = new sf::RenderWindow(sf::VideoMode({WIDTH, HEIGHT}),
+        "Title",
+        sf::State::Windowed,
+        settings);
+
     window->setFramerateLimit(120);
 
     sf::CircleShape circle(20.0f);
+
+    sf::CircleShape container(290.0f);
+    container.setPointCount(200);
+    container.setOrigin(container.getGeometricCenter());
+    container.setOutlineThickness(3.0f);
+    container.setFillColor(sf::Color(255, 0, 0, 0));
+    container.setOutlineColor(sf::Color::Black);
+    container.setPosition({WIDTH / 2.0f, HEIGHT / 2.0f});
+
     circle.setOrigin(circle.getGeometricCenter());
     circle.setPosition({WIDTH / 2.0f, HEIGHT / 2.0f});
     circle.setFillColor(sf::Color::Black);
     circle.setOutlineThickness(2.0f);
     circle.setOutlineColor(sf::Color::Red);
-    systemS::State test({ WIDTH / 2.0f, HEIGHT / 2.0f }, 5);
+    systemS::State test({ WIDTH / 2.0f + 90, HEIGHT / 2.0f }, 5);
 
     systemS::World::addState(test);
 
@@ -43,10 +58,10 @@ int main() {
         window -> clear(sf::Color::White);
 
         circle.setPosition({(float)pos.getX(), (float)pos.getY()});
-        std::cout << pos.getX() << " " << pos.getY() << std::endl;
 
         //drawing
         window->draw(circle);
+        window->draw(container);
 
         window -> display();
     }
